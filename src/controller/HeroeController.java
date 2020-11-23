@@ -14,9 +14,11 @@ import javax.servlet.http.HttpServletResponse;
 import dao.EstadoDao;
 import dao.GeneroDao;
 import dao.HeroeDao;
+import dao.PeliculaDao;
 import modelo.Estado;
 import modelo.Genero;
 import modelo.Heroe;
+import modelo.Pelicula;
 
 /**
  * Servlet implementation class HeroeController
@@ -28,6 +30,7 @@ public class HeroeController extends HttpServlet {
 	HeroeDao dao = new HeroeDao();
 	GeneroDao daoG = new GeneroDao();
 	EstadoDao daoE = new EstadoDao();
+	PeliculaDao daoP = new PeliculaDao();
     public HeroeController() {
         super();
         // TODO Auto-generated constructor stub
@@ -98,7 +101,7 @@ public class HeroeController extends HttpServlet {
 		case "actualizar":
 			Genero generro = daoG.find(request.getParameter("generos"));
 			Estado estaddo = daoE.find(request.getParameter("estados"));
-			    Heroe eroe = dao.find(Integer.parseInt(request.getParameter("id")));
+			Heroe eroe = dao.find(Integer.parseInt(request.getParameter("id")));
 		        eroe.setNombre(request.getParameter("nombre"));
 		        eroe.setHeroe(request.getParameter("heroe"));
 		        eroe.setEstadoBean(estaddo);
@@ -114,6 +117,33 @@ public class HeroeController extends HttpServlet {
 		     dao.delete(hero);
 		     response.sendRedirect("index.jsp");
 			
+			break;
+			
+		case "participacion":
+			List <Pelicula> peliculas = dao.listPeliculas();
+			int idd = Integer.parseInt(request.getParameter("id"));
+	        Heroe herooe = dao.find(idd);
+			RequestDispatcher dispatcher2 = request.getRequestDispatcher("heroeView/participar.jsp");
+			 request.setAttribute("heroe",herooe);
+			request.setAttribute("peliculas", peliculas);
+			 dispatcher2.forward(request, response);
+			break;
+		
+		case "participar":
+			
+	       
+	        Pelicula pelicula = daoP.find(Integer.parseInt(request.getParameter("peliculas")));
+	        Heroe heroee = dao.find(Integer.parseInt(request.getParameter("id")));
+	        List <Pelicula> lista = heroee.getPeliculas();
+	        lista.add(pelicula);
+	        heroee.setPeliculas(lista);
+	        List <Heroe> hp = pelicula.getHeroes();
+	        hp.add(heroee);
+	        pelicula.setHeroes(hp);
+	        dao.update(heroee);
+	        response.sendRedirect("index.jsp");
+	       
+	        
 			break;
 		
 		

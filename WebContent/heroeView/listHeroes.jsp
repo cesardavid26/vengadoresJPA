@@ -50,6 +50,7 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                                 <th>Estado</th>
                                 <th>Genero</th>
                                 <th>Acciones</th>
+                                <th>Participacion</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -72,7 +73,8 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                                     <td>
                                         <c:out value="${heroe.generoBean.getId()}" />
                                     </td>
-                                    <td><a href="HeroeController?action=editar&id=${heroe.id}">Editar</a> &nbsp;&nbsp;&nbsp;&nbsp; <a href="HeroeController?action=eliminar&id=${heroe.id}">Elimnar</a></td>
+                                    <td><a class="btn btn-warning btn-sm"href="HeroeController?action=editar&id=${heroe.id}">Editar</a>  <a class="btn btn-danger btn-sm" href="HeroeController?action=eliminar&id=${heroe.id}">Eliminar</a></td>
+                                    <td><a class="btn btn-info btn-sm" href="HeroeController?action=participacion&id=${heroe.id}">Agregar Pelicula</a></td>
                                 </tr>
                             </c:forEach>
                             <!-- } -->

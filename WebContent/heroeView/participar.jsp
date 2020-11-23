@@ -33,56 +33,33 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
    <div class="container col-md-5">
                 <div class="card">
                     <div class="card-body">
-
-                        <c:if test="${heroe != null}">
-                            <form action="HeroeController?action=actualizar" method="post">
-                        </c:if>
-                        <c:if test="${heroe == null}">
-                            <form action="HeroeController?action=registro" method="post">
-                        </c:if>
+                       
+                            <form action="HeroeController?action=participar" method="post">
+                       
 
                         <caption>
                             <h2>
-                                <c:if test="${heroe != null}">
-                                    Editar Heroe
-                                </c:if>
-                                <c:if test="${heroe == null}">
-                                    Agregar Nuevo Heroe
-                                </c:if>
+                                Agregar Participación
                             </h2>
                         </caption>
 
-                        <c:if test="${heroe != null}">
-                            <input type="hidden" name="id" value="<c:out value='${heroe.id}' />"  />
-                        </c:if>
+                       <c:if test="${heroe != null}">
+                            <input type="hidden" name="id" value="<c:out value='${heroe.id}' />" />
+                       </c:if>
 
-                        <fieldset class="form-group">
-                            <label>Nombre</label> <input type="text" value="<c:out value='${heroe.nombre}' />" class="form-control" name="nombre" required="required">
-                        </fieldset>
-
-                        <fieldset class="form-group">
-                            <label>Heroe</label> <input type="text" value="<c:out value='${heroe.heroe}' />" class="form-control" name="heroe">
-                        </fieldset>
+                        
 
 				<fieldset class="form-group">
-					<label for="estados">Estado</label> <select class="form-control"
-						id="estados" name="estados">
-						<c:forEach var="estado" items="${estados}">
-							<option value="${estado.id}"><c:out
-									value="${estado.descripcion}" /></option>
+					<label for="peliculas">Pelicula</label> <select class="form-control"
+						id="peliculas" name="peliculas">
+						<c:forEach var="pelicula" items="${peliculas}">
+							<option value="${pelicula.id}"><c:out
+									value="${pelicula.nombre}" /></option>
 						</c:forEach>
 					</select>
 				</fieldset>
 
-				<fieldset class="form-group">
-					<label for="generos">Genero</label> <select class="form-control"
-						id="generos" name="generos">
-						<c:forEach var="genero" items="${generos}">
-							<option value="${genero.id}"><c:out
-									value="${genero.descripcion}" /></option>
-						</c:forEach>
-					</select>
-				</fieldset>
+				
 
 				<button type="submit" class="btn btn-success">Guardar</button>
                         </form>
